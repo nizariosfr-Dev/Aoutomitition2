@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez notre flotte de voitures premium chez Sihard Rouste Car - Location de véhicules de luxe au Maroc">
+    <title>Nos Voitures | Sihard Rouste Car</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Styles de base */
+        :root {
+            --primary: #e53935;
+            --primary-dark: #c62828;
+            --secondary: #121212;
+            --accent: #ff6b6b;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --success: #4caf50;
+            --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--white);
+            background-color: var(--secondary);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header styles */
+        .header {
+            background: rgba(18, 18, 18, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .top-bar {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-icon i {
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        /* Styles spécifiques à la page Nos Voitures */
+        .cars-header {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/cars-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 90px;
+        }
+
+        .cars-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .filter-section {
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .filters {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--white);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 60px 0;
+        }
+
+        .car-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(229, 57, 53, 0.3);
+        }
+
+        .car-image {
+            height: 200px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .car-card:hover .car-image img {
+            transform: scale(1.1);
+        }
+
+        .car-details {
+            padding: 20px;
+        }
+
+        .car-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .car-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .car-price {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin: 15px 0;
+        }
+
+        .book-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--gradient);
+            border: none;
+            color: var(--white);
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .book-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(229, 57, 53, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .cars-title {
+                font-size: 2.5rem;
+            }
+
+            .cars-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="top-bar">
+            🌟 Offre Spéciale : -10% sur les locations longue durée !
+        </div>
+        <div class="container">
+            <div class="main-header">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="logo-text">Sihard</div>
+                </a>
+                <nav class="nav-menu">
+                    <a href="index.html">Accueil</a>
+                    <a href="about.html">À propos</a>
+                    <a href="cars.html" class="active">Nos voitures</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <a href="tel:+212600000000" class="phone-btn">
+                    <i class="fas fa-phone"></i>
+                    +212 6 00 00 00 00
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="cars-header">
+        <div class="container">
+            <h1 class="cars-title">Notre Flotte Premium</h1>
+            <p class="subtitle">Des véhicules d'exception pour des moments inoubliables</p>
+        </div>
+    </section>
+
+    <section class="filter-section">
+        <div class="container">
+            <div class="filters">
+                <button class="filter-btn active">Tous</button>
+                <button class="filter-btn">SUV</button>
+                <button class="filter-btn">Berlines</button>
+                <button class="filter-btn">Sport</button>
+                <button class="filter-btn">4x4</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="cars-content">
+        <div class="container">
+            <div class="cars-grid">
+                <!-- Voiture 1 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="images/cars/mercedes-cls.jpg" alt="Mercedes CLS">
+                    </div>
+                    <div class="car-details">
+                        <h3 class="car-name">Mercedes CLS</h3>
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-cog"></i>
+                                <span>Automatique</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>Diesel</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-users"></i>
+                                <span>5 places</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-suitcase"></i>
+                                <span>4 bagages</span>
+                            </div>
+                        </div>
+                        <div class="car-price">
+                            À partir de 1200 DH/jour
+                        </div>
+                        <button class="book-btn">Réserver maintenant</button>
+                    </div>
+                </div>
+
+                <!-- Voiture 2 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="images/cars/range-rover.jpg" alt="Range Rover Sport">
+                    </div>
+                    <div class="car-details">
+                        <h3 class="car-name">Range Rover Sport</h3>
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-cog"></i>
+                                <span>Automatique</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>Diesel</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-users"></i>
+                                <span>5 places</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-suitcase"></i>
+                                <span>5 bagages</span>
+                            </div>
+                        </div>
+                        <div class="car-price">
+                            À partir de 1500 DH/jour
+                        </div>
+                        <button class="book-btn">Réserver maintenant</button>
+                    </div>
+                </div>
+
+                <!-- Voiture 3 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="images/cars/bmw-m4.jpg" alt="BMW M4">
+                    </div>
+                    <div class="car-details">
+                        <h3 class="car-name">BMW M4</h3>
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-cog"></i>
+                                <span>Automatique</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>Essence</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-users"></i>
+                                <span>4 places</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-suitcase"></i>
+                                <span>2 bagages</span>
+                            </div>
+                        </div>
+                        <div class="car-price">
+                            À partir de 2000 DH/jour
+                        </div>
+                        <button class="book-btn">Réserver maintenant</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Animation du header au scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Filtrage des voitures
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Retire la classe active de tous les boutons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Ajoute la classe active au bouton cliqué
+                button.classList.add('active');
+                
+                // Ici, vous pouvez ajouter la logique de filtrage des voitures
+                // selon la catégorie sélectionnée
+            });
+        });
+    </script>
+</body>
+</html>

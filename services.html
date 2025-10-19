@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez nos services premium de location de voitures chez Sihard Rouste Car - Des services sur mesure pour votre confort">
+    <title>Nos Services | Sihard Rouste Car</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Styles de base */
+        :root {
+            --primary: #e53935;
+            --primary-dark: #c62828;
+            --secondary: #121212;
+            --accent: #ff6b6b;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --success: #4caf50;
+            --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--white);
+            background-color: var(--secondary);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header styles */
+        .header {
+            background: rgba(18, 18, 18, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .top-bar {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-icon i {
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        /* Styles spécifiques à la page Services */
+        .services-header {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/services-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 90px;
+        }
+
+        .services-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 80px 0;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(229, 57, 53, 0.3);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .service-icon i {
+            font-size: 2.5rem;
+            color: var(--white);
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .features-section {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 80px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+            align-items: center;
+        }
+
+        .feature-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .feature-item i {
+            color: var(--primary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .feature-image {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .services-title {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-text h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="top-bar">
+            🌟 Offre Spéciale : -10% sur les locations longue durée !
+        </div>
+        <div class="container">
+            <div class="main-header">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="logo-text">Sihard</div>
+                </a>
+           <div class="nav-menu" id="navMenu">
+                        <a href="index.html">Accueil</a>
+                        <a href="about.html">À propos</a>
+                        <a href="cars.html">Nos voitures</a>
+                        <a href="services.html">Services</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </nav>
+                <a href="tel:+212600000000" class="phone-btn">
+                    <i class="fas fa-phone"></i>
+                    +212 6 00 00 00 00
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="services-header">
+        <div class="container">
+            <h1 class="services-title">Nos Services Premium</h1>
+            <p class="subtitle">Une expérience de location sur mesure</p>
+        </div>
+    </section>
+
+    <section class="services-content">
+        <div class="container">
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3 class="service-title">Location Premium</h3>
+                    <p class="service-description">
+                        Accédez à notre flotte de véhicules haut de gamme pour une expérience de conduite exceptionnelle.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3 class="service-title">Livraison & Reprise</h3>
+                    <p class="service-description">
+                        Service de livraison et reprise à l'adresse de votre choix, disponible 24/7.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="service-title">Chauffeur Privé</h3>
+                    <p class="service-description">
+                        Profitez des services d'un chauffeur professionnel pour vos déplacements.
+                    </p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="service-title">Location Longue Durée</h3>
+                    <p class="service-description">
+                        Solutions de location adaptées pour les entreprises et les particuliers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-text">
+                    <h2>Pourquoi Choisir Nos Services ?</h2>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Flotte premium régulièrement renouvelée</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Service client disponible 24/7</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Assurance tous risques incluse</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Assistance routière gratuite</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Kilométrage illimité</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="feature-image">
+                    <img src="images/services-feature.jpg" alt="Service Premium Sihard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Animation du header au scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

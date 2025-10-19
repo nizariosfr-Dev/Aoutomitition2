@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sihard Rouste Car - Location de voitures premium au Maroc. Design moderne avec animations fluides et expérience utilisateur exceptionnelle.">
+    <title>Sihard Rouste Car | Location Voitures Premium Maroc</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #e53935; /* Vibrant Red */
+            --primary-dark: #c62828; /* Darker Red */
+            --secondary: #121212; /* Deep Black */
+            --accent: #ff6b6b; /* Coral Red */
+            --light: #f8f9fa; /* Light Gray */
+            --white: #ffffff;
+            --success: #4caf50;
+            --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--white);
+            background-color: var(--secondary);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        .header {
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header.scrolled {
+            box-shadow: 0 5px 20px rgba(229, 57, 53, 0.3);
+            background: rgba(0, 0, 0, 0.98);
+        }
+        
+        .top-bar {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: rotate 3s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .logo-icon i {
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+        
+        .phone-btn {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(229, 57, 53, 0.4);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 5px 15px rgba(229, 57, 53, 0.4); }
+            to { box-shadow: 0 5px 25px rgba(229, 57, 53, 0.8); }
+        }
+        
+        .phone-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(229, 57, 53, 0.6);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--white);
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.9)), 
+                        url('https://placehold.co/1920x1080/e53935/ffffff?text=Voiture+Sport+Rouge') no-repeat center center/cover;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+            animation: slideUp 1s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--white), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--light);
+            opacity: 0.9;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .hero-btn {
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(229, 57, 53, 0.5);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(229, 57, 53, 0.7);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        /* Quick Search */
+        .quick-search {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            margin: -80px auto 80px;
+            max-width: 900px;
+            border: 1px solid rgba(229, 57, 53, 0.3);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--white);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--white);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(229, 57, 53, 0.3);
+        }
+        
+        .search-btn {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .search-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(229, 57, 53, 0.6);
+        }
+        
+        /* Featured Vehicles */
+        .section {
+            padding: 120px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        
+        .vehicles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .vehicle-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .vehicle-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(229, 57, 53, 0.3);
+            border-color: rgba(229, 57, 53, 0.5);
+        }
+        
+        .vehicle-image {
+            height: 220px;
+            width: 100%;
+            background: linear-gradient(45deg, #e53935, #121212);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vehicle-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://placehold.co/400x220/e53935/ffffff?text=Voiture') no-repeat center center/cover;
+            opacity: 0.8;
+        }
+        
+        .vehicle-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gradient);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .vehicle-info {
+            padding: 25px;
+        }
+        
+        .vehicle-info h3 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .vehicle-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .vehicle-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .vehicle-price span {
+            font-size: 0.9rem;
+            color: var(--light);
+            font-weight: 400;
+        }
+        
+        .btn {
+            display: block;
+            text-align: center;
+            padding: 14px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Why Choose Us */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 40px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(229, 57, 53, 0.5);
+            box-shadow: 0 15px 30px rgba(229, 57, 53, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            background: var(--gradient);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--white);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .feature-card h3 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .feature-card p {
+            color: var(--light);
+            opacity: 0.8;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, rgba(229, 57, 53, 0.1), rgba(18, 18, 18, 0.9));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(229, 57, 53, 0.2), transparent 50%);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(229, 57, 53, 0.5);
+            box-shadow: 0 15px 35px rgba(229, 57, 53, 0.3);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 25px;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--light);
+        }
+        
+        .testimonial-text::before {
+            content: """;
+            font-size: 4rem;
+            color: var(--primary);
+            position: absolute;
+            top: -25px;
+            left: -15px;
+            opacity: 0.3;
+            font-family: serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+        
+        .author-info h4 {
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(to bottom, var(--secondary), #0a0a0a);
+            padding: 80px 0 40px;
+            position: relative;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            color: var(--primary);
+            font-size: 1.3rem;
+            min-width: 25px;
+        }
+        
+        .contact-text a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-text a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            opacity: 0.7;
+            font-size: 0.95rem;
+        }
+        
+        /* Sticky Phone Button for Mobile */
+        .sticky-phone {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient);
+            color: var(--white);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(229, 57, 53, 0.6);
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--secondary);
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .quick-search {
+                margin: -60px auto 60px;
+                padding: 25px;
+            }
+            
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .sticky-phone {
+                display: flex;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .vehicle-card:hover {
+                transform: translateY(-10px) scale(1.01);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar with Registration Number -->
+    <div class="top-bar">
+        <div class="container">
+            🔥 ENTREPRISE ENREGISTRÉE N°158439 | SERVICE 24/7: <a href="tel:0661909804" style="color:white; text-decoration:underline;">0661909804</a>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="main-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="logo-text">Sihard Rouste Car</div>
+                </div>
+                <nav>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="nav-menu" id="navMenu">
+                        <a href="index.html">Accueil</a>
+                        <a href="about.html">À propos</a>
+                        <a href="cars.html">Nos voitures</a>
+                        <a href="services.html">Services</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </nav>
+                <a href="tel:0661909804" class="phone-btn">
+                    <i class="fas fa-phone-alt"></i> 0661909804
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>VOTRE LIBERTÉ DE MOUVEMENT AU MAROC</h1>
+                <p>Louez votre véhicule idéal pour découvrir le Maroc en toute liberté. Service premium, tarifs compétitifs, réservation en 3 minutes.</p>
+                <div class="hero-btns">
+                    <a href="reservation.html" class="hero-btn btn-primary">Réserver maintenant</a>
+                    <a href="flotte.html" class="hero-btn btn-secondary">Découvrir notre flotte</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quick Search -->
+    <div class="container">
+        <div class="quick-search">
+            <form class="search-form" id="quickSearchForm">
+                <div class="form-group">
+                    <label for="pickup-date">Prise en charge</label>
+                    <input type="date" id="pickup-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="pickup-time">Heure</label>
+                    <input type="time" id="pickup-time" value="10:00" required>
+                </div>
+                <div class="form-group">
+                    <label for="return-date">Restitution</label>
+                    <input type="date" id="return-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="pickup-location">Lieu</label>
+                    <select id="pickup-location" required>
+                        <option value="">Sélectionner</option>
+                        <option value="rabat-airport">Aéroport Rabat</option>
+                        <option value="casablanca-airport">Aéroport Casablanca</option>
+                        <option value="marrakech-airport">Aéroport Marrakech</option>
+                        <option value="agadir-airport">Aéroport Agadir</option>
+                        <option value="rabat-center">Centre-ville Rabat</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="search-btn">Rechercher</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Featured Vehicles -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">NOS VÉHICULES PHARES</h2>
+            <div class="vehicles-grid">
+                <!-- Vehicle 1 -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <div class="vehicle-badge">SUV Premium</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Range Rover Sport</h3>
+                        <div class="vehicle-specs">
+                            <div class="spec-item"><i class="fas fa-users"></i> 5 places</div>
+                            <div class="spec-item"><i class="fas fa-cog"></i> Automatique</div>
+                            <div class="spec-item"><i class="fas fa-snowflake"></i> Climatisation</div>
+                            <div class="spec-item"><i class="fas fa-suitcase"></i> 4 bagages</div>
+                        </div>
+                        <div class="vehicle-price">1200 MAD<span>/jour</span></div>
+                        <a href="reservation.html" class="btn btn-primary">Réserver</a>
+                    </div>
+                </div>
+                
+                <!-- Vehicle 2 -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <div class="vehicle-badge">Berline Luxe</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Mercedes E-Class</h3>
+                        <div class="vehicle-specs">
+                            <div class="spec-item"><i class="fas fa-users"></i> 5 places</div>
+                            <div class="spec-item"><i class="fas fa-cog"></i> Automatique</div>
+                            <div class="spec-item"><i class="fas fa-snowflake"></i> Climatisation</div>
+                            <div class="spec-item"><i class="fas fa-suitcase"></i> 3 bagages</div>
+                        </div>
+                        <div class="vehicle-price">850 MAD<span>/jour</span></div>
+                        <a href="reservation.html" class="btn btn-primary">Réserver</a>
+                    </div>
+                </div>
+                
+                <!-- Vehicle 3 -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <div class="vehicle-badge">Sportive</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Porsche 911</h3>
+                        <div class="vehicle-specs">
+                            <div class="spec-item"><i class="fas fa-users"></i> 2 places</div>
+                            <div class="spec-item"><i class="fas fa-cog"></i> Automatique</div>
+                            <div class="spec-item"><i class="fas fa-snowflake"></i> Climatisation</div>
+                            <div class="spec-item"><i class="fas fa-suitcase"></i> 1 bagage</div>
+                        </div>
+                        <div class="vehicle-price">2500 MAD<span>/jour</span></div>
+                        <a href="reservation.html" class="btn btn-primary">Réserver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose Us -->
+    <section class="section" style="background: linear-gradient(135deg, rgba(229, 57, 53, 0.05), rgba(18, 18, 18, 0.8));">
+        <div class="container">
+            <h2 class="section-title">POURQUOI NOUS CHOISIR ?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>FLOTTE RÉCENTE</h3>
+                    <p>Véhicules premium entretenus régulièrement et récents (moins de 2 ans)</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3>TARIFS TRANSPARENTS</h3>
+                    <p>Pas de frais cachés - prix tout inclus dès la réservation</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>SERVICE 24/7</h3>
+                    <p>Assistance clientèle réactive disponible à tout moment</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>LIVRAISON FLEXIBLE</h3>
+                    <p>Récupération et restitution à votre convenance dans tout le Maroc</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">TÉMOIGNAGES CLIENTS</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Service exceptionnel ! Véhicule propre, prix transparents et équipe très professionnelle. Je recommande vivement Sihard Rouste Car pour découvrir le Maroc.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AM</div>
+                        <div class="author-info">
+                            <h4>Ahmed M.</h4>
+                            <p>Client depuis 2022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Réservation facile et rapide. Le véhicule était exactement comme décrit et l'assistance clientèle était excellente. Parfait pour mes vacances à Marrakech !
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SL</div>
+                        <div class="author-info">
+                            <h4>Sarah L.</h4>
+                            <p>Vacances d'été 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Meilleure expérience de location de voiture au Maroc. Prix compétitifs, véhicule premium et service client réactif. Je reviendrai certainement !
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">YM</div>
+                        <div class="author-info">
+                            <h4>Youssef M.</h4>
+                            <p>Voyage d'affaires</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Sihard Rouste Car</h3>
+                    <p>Votre partenaire premium pour la location de voitures au Maroc. Service professionnel avec flotte récente et tarifs transparents.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="flotte.html">Notre flotte</a></li>
+                        <li><a href="reservation.html">Réservation</a></li>
+                        <li><a href="tarifs.html">Tarifs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-text">
+                            BLOC T 9 N 67 EL KAMRA SUD CYM, RABAT, Maroc
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-text">
+                            <a href="tel:0661909804">0661909804</a>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-text">
+                            contact@sihardroustecar.ma
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Horaires</h3>
+                    <p><i class="fas fa-clock"></i> Lundi - Dimanche: 8h00 - 22h00</p>
+                    <p><i class="fas fa-headset"></i> Service client 24/7</p>
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(229, 57, 53, 0.1); border-radius: 12px; border-left: 3px solid var(--primary);">
+                        <strong>🔥 OFFRE SPÉCIALE:</strong><br>
+                        10% de réduction sur les locations de 7+ jours !
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Sihard Rouste Car - Tous droits réservés | N° d'enregistrement: 158439</p>
+                <p><a href="mentions-legales.html" style="color:var(--light); opacity:0.8;">Mentions légales</a> | <a href="#" style="color:var(--light); opacity:0.8;">Conditions générales</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Sticky Phone Button for Mobile -->
+    <a href="tel:0661909804" class="sticky-phone">
+        <i class="fas fa-phone-alt"></i>
+    </a>
+    
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Form Validation for Quick Search
+        const quickSearchForm = document.getElementById('quickSearchForm');
+        quickSearchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pickupDate = new Date(document.getElementById('pickup-date').value);
+            const returnDate = new Date(document.getElementById('return-date').value);
+            
+            if (isNaN(pickupDate.getTime()) || isNaN(returnDate.getTime())) {
+                alert('Veuillez sélectionner des dates valides.');
+                return;
+            }
+            
+            if (returnDate <= pickupDate) {
+                alert('La date de restitution doit être postérieure à la date de prise en charge.');
+                return;
+            }
+            
+            // In a real implementation, this would redirect to the reservation page with parameters
+            window.location.href = 'reservation.html';
+        });
+        
+        // Set minimum dates for date inputs
+        const today = new Date();
+        const todayString = today.toISOString().split('T')[0];
+        document.getElementById('pickup-date').min = todayString;
+        document.getElementById('return-date').min = todayString;
+        
+        // Set return date to be at least one day after pickup
+        document.getElementById('pickup-date').addEventListener('change', function() {
+            const pickup = new Date(this.value);
+            const returnDate = new Date(pickup);
+            returnDate.setDate(returnDate.getDate() + 1);
+            document.getElementById('return-date').min = returnDate.toISOString().split('T')[0];
+        });
+        
+        // Initialize dates to tomorrow and day after tomorrow
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const dayAfterTomorrow = new Date(tomorrow);
+        dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
+        
+        document.getElementById('pickup-date').value = tomorrow.toISOString().split('T')[0];
+        document.getElementById('return-date').value = dayAfterTomorrow.toISOString().split('T')[0];
+    </script>
+</body>
+</html>
+
