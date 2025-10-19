@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BakkouTele - Centre de Formation en Réparation Mobile à Rabat</title>
+    <style>
+        :root {
+            --primary: #007BFF;
+            --secondary: #28A745;
+            --accent: #FFC107;
+            --text: #343A40;
+            --background: #F8F9FA;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--primary);
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://placehold.co/1200x600?text=Atelier+de+Réparation') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        .section {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            margin: 10px auto;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .benefit-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .testimonials {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .testimonial {
+            background: var(--background);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        .testimonial-author {
+            font-weight: bold;
+            margin-top: 10px;
+            color: var(--primary);
+        }
+        .cta-section {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+        }
+        .btn-secondary:hover {
+            background-color: var(--background);
+        }
+        footer {
+            background: var(--text);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
+        .language-btn {
+            background: none;
+            border: 1px solid white;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .language-btn.active {
+            background: white;
+            color: var(--text);
+        }
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">BT</div>
+                    <span>BakkouTele</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#apropos">À Propos</a></li>
+                        <li><a href="#programme">Programme</a></li>
+                        <li><a href="#pourquoi">Pourquoi Nous</a></li>
+                        <li><a href="#inscription">Inscription</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="language-switcher">
+                    <button class="language-btn active">FR</button>
+                    <button class="language-btn">AR</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="accueil">
+            <div class="container">
+                <h1>Devenez un Expert en Réparation Mobile Certifié !</h1>
+                <p>Formation pratique de 2 mois en collaboration avec la Chambre de Commerce et d'Industrie de Rabat-Salé-Kénitra.</p>
+                <a href="#inscription" class="btn">Inscrivez-vous Maintenant !</a>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Prêt à Lancer Votre Carrière ?</h2>
+                <p>Nos places sont limitées pour garantir une formation de qualité. Ne manquez pas cette opportunité unique !</p>
+                <a href="#inscription" class="btn btn-secondary">Démarrez Votre Inscription</a>
+            </div>
+        </section>
+
+        <section class="section" id="apropos">
+            <div class="container">
+                <h2 class="section-title">Qui Sommes-Nous ?</h2>
+                <p>BakkouTele est un centre de formation leader à Rabat, dédié à l'excellence dans la réparation de smartphones. Fondé dans le but de combler le besoin croissant en techniciens qualifiés, nous nous engageons à offrir une éducation de haute qualité et des opportunités de carrière concrètes.</p>
+                <p>Notre Mission: Former des experts en réparation mobile capables de diagnostiquer et de résoudre efficacement les problèmes matériels et logiciels, tout en promouvant l'innovation et l'entrepreneuriat dans le secteur.</p>
+            </div>
+        </section>
+
+        <section class="section" id="pourquoi">
+            <div class="container">
+                <h2 class="section-title">Pourquoi Choisir BakkouTele ?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🔧</div>
+                        <h3>Équipement de Pointe</h3>
+                        <p>Accédez à un laboratoire entièrement équipé des dernières technologies et outils de réparation.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">👨‍🏫</div>
+                        <h3>Formateurs Certifiés</h3>
+                        <p>Apprenez de professionnels chevronnés, passionnés par leur métier et dédiés à votre réussite.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">⚙️</div>
+                        <h3>Ateliers 100% Pratiques</h3>
+                        <p>Notre philosophie est "apprendre en faisant" avec des séances intensives sur de vrais appareils.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📈</div>
+                        <h3>Soutien à l'Emploi</h3>
+                        <p>Bénéficiez d'une certification reconnue et de conseils pour l'intégration professionnelle.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Ce que Nos Diplômés Disent</h2>
+                <div class="testimonials">
+                    <div class="testimonial">
+                        <p>"Grâce à BakkouTele, j'ai acquis les compétences nécessaires pour ouvrir mon propre atelier. La formation est très complète et les formateurs sont excellents !"</p>
+                        <div class="testimonial-author">- Youssef T.</div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"J'ai été impressionné par la qualité des équipements et l'approche pratique de la formation. Je recommande vivement BakkouTele à tous ceux qui veulent se lancer dans la réparation mobile."</p>
+                        <div class="testimonial-author">- Fatima Z.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="programme">
+            <div class="container">
+                <h2 class="section-title">Notre Programme de Formation Certifié</h2>
+                <p>Notre programme intensif de 2 mois est conçu pour vous doter de toutes les compétences nécessaires pour devenir un technicien expert en réparation de smartphones. Chaque module combine théorie et pratique pour une maîtrise complète.</p>
+                <ul style="margin-top: 20px; padding-left: 20px;">
+                    <li><strong>Module 1:</strong> Composants électroniques - Introduction à l'électronique de base</li>
+                    <li><strong>Module 2:</strong> Outils de diagnostic - Utilisation du multimètre, oscilloscope</li>
+                    <li><strong>Module 3:</strong> Assemblage et démontage - Techniques sécurisées de démontage</li>
+                    <li><strong>Module 4:</strong> Micro-soudure - Techniques de microsoudure (SMD, BGA)</li>
+                    <li><strong>Module 5:</strong> Diagnostic rapide - Méthodes rapides pour identifier les pannes</li>
+                    <li><strong>Module 6:</strong> Réparation d'afficheur - Remplacement d'écrans, vitres tactiles</li>
+                    <li><strong>Module 7:</strong> Flash & déblocage smartphones - Opérations de flashage, déblocage réseau</li>
+                    <li><strong>Module 8:</strong> Gestion d'atelier - Conseils pour la gestion d'un atelier de réparation</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="inscription">
+            <div class="container">
+                <h2 class="section-title">Comment S'inscrire à BakkouTele</h2>
+                <p>Rejoindre BakkouTele est simple ! Suivez ces étapes pour garantir votre place dans notre prochaine session de formation.</p>
+                <div style="margin: 30px 0;">
+                    <h3>Contact</h3>
+                    <p>Téléphone: 05 37 20 83 60 / 06 60 60 60 60</p>
+                    <p>Email: contact@bakkoutele.ma</p>
+                </div>
+                <div style="margin: 30px 0;">
+                    <h3>Prochaines Dates de Formation</h3>
+                    <p>Session 1: 01 Septembre 2025 - 01 Novembre 2025 - 10 places</p>
+                    <p>Session 2: 01 Novembre 2025 - 01 Janvier 2026 - 8 places</p>
+                </div>
+                <a href="#contact" class="btn">Envoyer Mon Inscription</a>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="container">
+                <h2 class="section-title">Contactez-Nous</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                    <div>
+                        <h3>Adresse</h3>
+                        <p>Immeuble E, 2e étage, Rue Al Hoceima, Rabat, Maroc</p>
+                        <p>Horaires: Du Lundi au Vendredi : 9h00 - 18h00</p>
+                    </div>
+                    <div>
+                        <h3>Téléphone</h3>
+                        <p>05 37 20 83 60</p>
+                        <p>06 60 60 60 60</p>
+                    </div>
+                    <div>
+                        <h3>Email</h3>
+                        <p>contact@bakkoutele.ma</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 BakkouTele. Tous droits réservés.</p>
+            <p>Centre de Formation en Réparation Mobile - Rabat, Maroc</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple language switcher functionality
+        document.querySelectorAll('.language-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                // In a real implementation, this would switch content
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
